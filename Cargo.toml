@@ -1,0 +1,22 @@
+[package]
+name = "pgsqlite"
+version = "0.1.0"
+edition = "2021"
+description = "A PostgreSQL wire-protocol compatible server backed by SQLite"
+license = "MIT"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+rusqlite = { version = "0.31", features = ["bundled", "functions", "column_decltype"] }
+sqlparser = { version = "0.53", features = ["visitor"] }
+bytes = "1"
+thiserror = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4"] }
+md-5 = "0.10"
+hex = "0.4"
+
+[dev-dependencies]
+tokio-postgres = "0.7"
+deadpool-postgres = "0.14"
