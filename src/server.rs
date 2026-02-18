@@ -27,7 +27,10 @@ impl PgServer {
     pub async fn run(&self) -> Result<(), String> {
         let listener = TcpListener::bind(&self.addr).await
             .map_err(|e| format!("Failed to bind: {}", e))?;
-        tracing::info!("pgsqlite listening on {}", self.addr);
+        let local_addr = listener.local_addr()
+            .map_err(|e| format!("Failed to get local addr: {}", e))?;
+        println!("Listening on: {}", local_addr);
+        tracing::info!("pgsqlite listening on {}", local_addr);
 
         loop {
             let (stream, addr) = listener.accept().await

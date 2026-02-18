@@ -11,7 +11,6 @@ async fn main() {
     let db_path = std::env::var("PGSQLITE_DB").unwrap_or_else(|_| "pgsqlite.db".to_string());
 
     println!("pgsqlite - PostgreSQL wire protocol server backed by SQLite");
-    println!("Listening on: {}", addr);
     println!("Database: {}", db_path);
 
     let server = PgServer::new(&addr, &db_path).expect("Failed to create server");
